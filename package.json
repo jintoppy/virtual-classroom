@@ -1,0 +1,33 @@
+{
+  "name": "virtual-class-room",
+  "version": "0.0.1-2",
+  "author": {
+    "name": "Jinto Jose",
+    "email": "jintoppy@gmail.com"
+  },
+  "description": "A virtual class room with webRTC, socket",
+  "main": "",
+  "scripts": {
+    "start": "node ./server/server.js"
+  },
+  "contributors": [
+    {
+      "name": "Jinto Jose",
+      "email": "jintoppy@gmail.com"
+    }
+  ],
+  "dependencies": {
+    "express": "",
+    "underscore": "",
+    "socket.io": "",
+    "webrtc.io": ""
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=0.4"
+  },
+  "analyze": false,
+  "dist": {
+    "shasum": "8acb3d0c6fa740147017b49462edb3f514826e22"
+  }
+}

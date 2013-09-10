@@ -1,0 +1,156 @@
+	<html>
+	<head>
+	<title>good</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">	
+	<link rel="stylesheet" type="text/css" href="css/custom.css">	
+	</head>
+	<body>
+	 <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+	  <div class="container">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="#">Project name</a>
+	    </div>
+	    <div class="collapse navbar-collapse">
+	      <ul class="nav navbar-nav">
+	        <li class="active"><a href="#">Home</a></li>
+	        <li><a href="#about">About</a></li>
+	        <li><a href="#contact">Contact</a></li>
+	      </ul>
+	    </div><!-- /.nav-collapse -->
+	  </div><!-- /.container -->
+	</div><!-- /.navbar -->
+
+	<div class="container">
+
+	  <div class="row row-offcanvas row-offcanvas-right">
+	    <div class="col-xs-12 col-sm-9">
+	      <p class="pull-right visible-xs">
+	        <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+	      </p>
+	      <input type="text" id="datachanneltextbox" /> <button id="datachannelsend">SendDataChannel</button>
+
+	      <div class="alert alert-dismissable alert-danger" id="popupblockerstatus" style="display:none">
+			  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			  Please disable popup blocker for this site.
+		  </div>
+	      <div class="jumbotron" id="loginScreen">
+	        <h1>Hi User</h1>
+	        <span id="popupblockerstatus"></span>
+	         <video id="localVideo" autoplay muted></video>
+  			<video id="remoteVideo" autoplay muted></video>
+
+	        <div class="form-group">  
+		        <label class="sr-only" for="nametxtbox">Name</label>
+		        <input type="text" class="form-control" id="nametxtbox" placeholder="Enter your name" />
+		    </div>
+    		<div class="form-inline">
+        		<div class="form-group">  
+        			<label class="sr-only" for="createclassId">Create your class room</label>
+        			<input type="text" class="form-control" id="createclassId" placeholder="Enter class name" />
+        		</div>
+        		<button id="create" class="btn btn-primary">Create</button>
+        	</div>
+        	<div> OR </div>
+    		<div class="form-inline" role="form">
+    		<div class="form-group"> 
+    			<label class="sr-only" for="join">Give room id</label>
+    			<input type="text" class="form-control" id="roomid" placeholder="Enter class id" />
+    		</div>
+    		 <button id="join" class="btn btn-primary">Join</button>
+        	</div>
+	                
+	      </div>
+
+	    <div id="classScreen" style="display:none">
+	    	<h5 id="classRoomTitle"></h5>
+	    	<div>
+		        <textarea id="field" class="form-control" rows="10" cols="30"></textarea>
+		        <button id="send" class="btn btn-primary">Send</button>
+		    </div>
+		    <div class="panel panel-primary" >
+		        <div class="panel-heading">
+		          <h3 class="panel-title">Class Room</h3>
+		        </div>
+		        <div class="panel-body" id="content">
+		          Put yor content here
+		        </div>
+	  		</div>
+	  	</div>	
+
+	    </div><!--/span-->
+
+	    <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+	      <div class="well sidebar-nav" id="currentStudents">
+	        <ul class="nav">
+	          <li>Students</li>
+	        </ul>
+	      </div><!--/.well -->
+	    </div><!--/span-->
+	  </div><!--/row-->
+
+	  <hr>
+
+	  <footer>
+	    <p>&copy; created by <a href="mailto:jintoppy@gmail.com">Jinto Jose</a></p>
+	  </footer>
+
+	</div><!--/.container-->
+
+	<!-- Modal for Create Class -->
+
+	<div class="modal fade" id="classCreateStatusModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Class created status</h4>
+        </div>
+        <div class="modal-body">
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+
+
+  <!-- Modal for New Student -->
+
+	<div class="modal fade" id="newStudentRequestModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Class created status</h4>
+        </div>
+        <div class="modal-body">
+          
+        </div>
+        <input type="hidden" id="classid" />
+        <input type="hidden" id="studentname" />
+        <div class="modal-footer">
+        	<button type="button" id="acceptStudentBtn" class="btn btn-primary">Accept</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Reject</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+
+
+	<!-- JavaScript at the bottom for fast page loading -->
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="js/jquery-1.10.2.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/custom.js"></script>
+	</body>
+	</html>
+
